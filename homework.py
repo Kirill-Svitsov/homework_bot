@@ -9,7 +9,7 @@ import requests
 import simplejson
 import telegram
 from dotenv import load_dotenv
-from simplejson.errors import JSONDecodeError
+
 
 import exceptions
 
