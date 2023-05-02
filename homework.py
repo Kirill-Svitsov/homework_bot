@@ -127,7 +127,7 @@ def main():
     if check_tokens():
         logging.info('Бот запущен.')
         bot = telegram.Bot(token=TELEGRAM_TOKEN)
-        timestamp = int(time.time())
+        timestamp = 0
         first_status = ''
         error_message = ''
         while True:
