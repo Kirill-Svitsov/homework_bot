@@ -10,7 +10,6 @@ import simplejson
 import telegram
 from dotenv import load_dotenv
 
-
 import exceptions
 
 load_dotenv()
@@ -90,7 +89,6 @@ def get_api_answer(timestamp):
     try:
         return homework_statuses.json()
     except simplejson.errors.JSONDecodeError:
-        logger.error('Невозможно преобразовать ответ в JSON')
         raise exceptions.JsonError('Невозможно получить данные в JSON')
 
 
@@ -129,7 +127,7 @@ def main():
     if check_tokens():
         logging.info('Бот запущен.')
         bot = telegram.Bot(token=TELEGRAM_TOKEN)
-        timestamp = 0
+        timestamp = int(time.time())
         first_status = ''
         error_message = ''
         while True:
@@ -148,7 +146,7 @@ def main():
                     send_message(bot, message)
                 error_message = message
             finally:
-                timestamp = int(time.time())
+                timestamp = response['current_date']
                 time.sleep(RETRY_PERIOD)
 
 
